@@ -15,3 +15,5 @@ My personal own discord bot written in python with the discord.py module. I doub
 * discord.py (obviously)
 
 You also need to create your own two directories called: cringetiktoks and text_dumps.
+
+Also store your token inside a file called "token.txt" and the bot will read from it directly.
