@@ -1,6 +1,6 @@
 # My discord bot
 
-My personal own discord bot. I doubt you will want to run it yourself, I'll just upload its source code here because I feel like it.
+My personal own discord bot written in python with the discord.py module. I doubt you will want to run it yourself, I'll just upload its source code here because I feel like it.
 
 ---
 
