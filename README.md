@@ -13,3 +13,5 @@ My personal own discord bot. I doubt you will want to run it yourself, I'll just
 * asyncio
 * datetime
 * discord.py (obviously)
+
+You also need to create your own two directories called: cringetiktoks and text_dumps.
