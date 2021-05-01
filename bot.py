@@ -174,7 +174,7 @@ async def calc(ctx, arg1, method, arg2):
     except ValueError:
         await ctx.send(f"You seemed to have entered a non numerical parameter. An example of the calc command looks like this: `{prefix}calc 2 + 2`")
     except ZeroDivisionError:
-        await ctx.send("You can't divide by ")
+        await ctx.send("You can't divide by 0")
 
 @cmd()
 async def myspace(ctx, arg=None):
@@ -214,7 +214,7 @@ async def duck(ctx, arg=None):
         for k, v in diction["FirstURL"]:
             await ctx.send("Key: {k}\t\tValue: {v}")
 
-@cmd(name="cowsay")
+@cmd(name="cowsay", aliases=["tuxsay"])
 async def _cowsay(ctx, *, arg):
     
     available_characters = ["tux", "cow", "daemon"]
@@ -251,5 +251,27 @@ async def _cowsay(ctx, *, arg):
     except discord.HTTPException as excepterror:
         print(excepterror)
         await ctx.send("Sorry, message was too large. (Over 2000 chars)")
+
+@cmd()
+async def translate(ctx, *, arg):
+
+    # Add so you can choose target and source translations
+
+    rnd = randint(0, 1)
+    
+    if rnd == 0:
+        msg = await ctx.send("Alright.")
+    else:
+        msg = await ctx.send("On it.")
+
+    req = requests.post("https://libretranslate.com/translate", headers={"Content-Type": "application/json"}, json={
+        "q": arg,
+        "source": "en",
+        "target": "es"
+    })
+
+    final = req.json()
+
+    await msg.edit(content = final["translatedText"])
 
 bot.run(shittytokenread)
