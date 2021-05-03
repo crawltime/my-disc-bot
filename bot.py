@@ -222,6 +222,8 @@ async def _cowsay(ctx, *, arg):
     available_characters = ["tux", "cow", "daemon"]
 
     try:
+        arg = arg.replace("```", "`")
+
         if arg.startswith("--help", 0, 6):
             send_string = ""
             for i in available_characters:
