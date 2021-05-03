@@ -12,6 +12,8 @@ import random
 import time
 from datetime import datetime
 import asyncio
+import sys
+import subprocess
 
 # Local files import
 from cringe_list import keklist, cringelist
@@ -80,7 +82,7 @@ async def unixepoch(ctx):
 
 @cmd()
 async def helloworld(ctx):
-    await ctx.send("Hello world")
+    await ctx.send(f"Hello world, <@{ctx.message.author.id}>")
 
 @cmd()
 async def ping(ctx):
@@ -273,5 +275,19 @@ async def translate(ctx, *, arg):
     final = req.json()
 
     await msg.edit(content = final["translatedText"])
+
+@cmd()
+async def about(ctx):
+    try:
+        platform = sys.platform
+        py_ver = sys.version
+        kernel = str(subprocess.check_output(["uname", "-r"]))
+
+
+        await ctx.send(f"Operating System: {platform}\nPython version: {py_ver}\nKernel: {kernel[2:-3]}")
+
+    except FileNotFoundError as filerr:
+        print(filerr)
+        await ctx.send("Error fetching system information.")
 
 bot.run(shittytokenread)
